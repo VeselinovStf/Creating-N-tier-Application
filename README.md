@@ -1,7 +1,7 @@
 # Creating-N-tier-Application
 Pluralsight Creating N-Tier Applications in C#  Course Repo
 
-## Part 1 
+## [Part 1](https://github.com/VeselinovStf/Creating-N-tier-Application/tree/master/Part_01 "Part 1") 
 
 In part 1 of the course, goal is to  learn the pros and cons of separating applications into tiers, and two different ways to go about doing so.
 

@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ProfileViewModel
+
+<h1>Edit Profile</h1>
+<form asp-controller="Profile" asp-action="EditProfile" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FavoriteAuthor"></label>
+        <input asp-for="FavoriteAuthor" class="form-control" />
+        <span asp-validation-for="FavoriteAuthor" class="text-danger"></span>
+    </div>
+    <button type="submit">Submit</button>
+</form>

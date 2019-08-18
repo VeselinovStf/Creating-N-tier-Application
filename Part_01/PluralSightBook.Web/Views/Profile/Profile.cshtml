@@ -1,6 +1,8 @@
-﻿<h1>Profile</h1>
-Welcome <asp:Literal ID="NameLiteral" />!
+﻿@model ProfileViewModel
+
+<h1>Profile</h1>
+Welcome @(Model.Name == null ? "" : Model.Name)!
 <p>
-    Your favorite Pluralsight author's name is <asp:Literal ID="AuthorLiteral" runat="server" />.  Thanks for sharing!
+    Your favorite Pluralsight author's name is @(Model.FavoriteAuthor == null ? "" : Model.FavoriteAuthor).  Thanks for sharing!
 </p>
 <a asp-action="EditProfile" asp-controller="Profile">Edit Profile</a>

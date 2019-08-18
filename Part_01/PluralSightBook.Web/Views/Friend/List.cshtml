@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FriendsViewModel>
+
+<h1>Friends</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>E-Mail</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var friend in Model)
+        {
+            <tr>
+                <td>
+                    @friend.Email
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

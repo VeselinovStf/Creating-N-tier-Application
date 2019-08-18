@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PluralSightBook.Web.Identity
+@inject SignInManager<PluralSightBookIdentityUser> SignInManager
+@inject UserManager<PluralSightBookIdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-controller="Account" asp-action="Logout" asp-route-returnUrl="Index" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+    </ul>
+}

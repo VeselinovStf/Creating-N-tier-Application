@@ -3,9 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73FDE198-3246-44F7-92BA-C9880899D18C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A66B2BC5-C31C-4ADB-8820-301A4AC4CCC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluralSightBook.Web", "PluralSightBook.Web\PluralSightBook.Web.csproj", "{663C22DD-3592-4D98-B510-56275400EC3F}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{663C22DD-3592-4D98-B510-56275400EC3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663C22DD-3592-4D98-B510-56275400EC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663C22DD-3592-4D98-B510-56275400EC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663C22DD-3592-4D98-B510-56275400EC3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{663C22DD-3592-4D98-B510-56275400EC3F} = {A66B2BC5-C31C-4ADB-8820-301A4AC4CCC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65A4BE06-2533-4D3C-B501-1170526DB2C2}

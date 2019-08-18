@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PluralSightBook.Web.Data;
 using PluralSightBook.Web.ViewModels.Friend;
 using System.Linq;
 
 namespace PluralSightBook.Web.Controllers
 {
+    [Authorize]
     public class FriendController : Controller
     {
         private readonly PluralSightBookDbContext context;
@@ -14,6 +16,7 @@ namespace PluralSightBook.Web.Controllers
             this.context = context;
         }
 
+        [HttpGet]
         public IActionResult List()
         {
             var dbFriends = this.context.Friends.ToList();

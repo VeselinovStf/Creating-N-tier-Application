@@ -18,42 +18,41 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <form runat="server">
-        <div class="page">
-            <div class="header">
-                <div class="title">
-                    <h1>
-                        <a href="/">pluralsightbook</a>
-                    </h1>
-                </div>
-                <div class="loginDisplay">
-                    <partial name="_LoginPartial" />
-                </div>
-                <div class="clear hideSkiplink">
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <div class="navbar navbar-nav menu">
-                                <ul class="nav navbar-nav" style="flex-direction:row">
-                                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <partial name="_ProfileMenuLinkPartial" />
-                                </ul>
-                            </div>
+
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    <a href="/">pluralsightbook</a>
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <partial name="_LoginPartial" />
+            </div>
+            <div class="clear hideSkiplink">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar navbar-nav menu">
+                            <ul class="nav navbar-nav" style="flex-direction:row">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <partial name="_ProfileMenuLinkPartial" />
+                            </ul>
                         </div>
-                    </nav>
-                </div>
-            </div>
-            <div class="container">
-                <partial name="_CookieConsentPartial" />
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
-            <div class="clear">
+                    </div>
+                </nav>
             </div>
         </div>
-        <div class="footer">
+        <div class="container">
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </form>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+    </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

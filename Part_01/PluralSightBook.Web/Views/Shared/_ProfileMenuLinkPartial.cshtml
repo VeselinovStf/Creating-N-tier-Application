@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PluralSightBook.Web.Identity
+@inject SignInManager<PluralSightBookIdentityUser> SignInManager
+@inject UserManager<PluralSightBookIdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li><a asp-controller="Profile" asp-action="Profile">Profile</a></li>
+}

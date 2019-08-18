@@ -7,6 +7,14 @@ In part 1 of the course, goal is to  learn the pros and cons of separating appli
 
 In part 1 of this series, you'll learn why separating software application logic into layers is a common practice, as well as some pros and cons of doing so. You'll see how monolithic applications can evolve into N-Tier applications, including two approaches: Data Centric and Domain Centric (or DDD) designs.
 
+### Repo Structure ( different parts of cours are separated in different branch )
+
+#### Branches
+
+	-	MonolithicAppSceleton monolithic sceleton 
+	-	Data-Centric N-Tier Design
+	-	Domain-Centric N-Tier Design
+	
 ### Project
 
 -  Sample Application – A Social Web Site 
@@ -21,3 +29,19 @@ In part 1 of this series, you'll learn why separating software application logic
 - Physical separation into tiers can provide scalability, security, and fault tolerance, among other benefits  
 - Applications can evolve over time as their needs require the complexity of an N-Tier design  
 - Avoid making end runs around layers in your application 
+
+## Traditional Data-Centric N-Tier Architecture 
+
+-  Build the Add Friend feature into PluralsightBook 
+	-  New Feature:   Add Friend , Remove Friend 
+-  Start building everything in the UI 
+-  Refactor common logic into BLL (Business Logic Layer ) and DAL ( Data access Layer )
+
+### TODO LIST
+
+- Add Menu Link To friends
+- Create Friends Page
+- Show Current Friends on Page
+- Link to Add Friend page
+- Create Add Frient Page
+- Remove on current Friends Page

@@ -55,6 +55,13 @@ namespace PluralSightBook.Web.Controllers
                     return View();
                 }
 
+                // TODO: STOP DUPLICATES
+                if (user.Friends.FirstOrDefault(f => f.Email == model.Email) != null)
+                {
+                    ViewData["Error"] = "You are already friend with this user";
+                    return View();
+                }
+
                 user.Friends.Add(new Data.Models.Friend()
                 {
                     Email = model.Email,

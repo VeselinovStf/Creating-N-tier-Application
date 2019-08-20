@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PluralSightBook.Web.Data;
 using PluralSightBook.Web.Identity;
 using PluralSightBook.Web.ViewModels.Profile;
 using System.Threading.Tasks;
@@ -11,17 +12,24 @@ namespace PluralSightBook.Web.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<PluralSightBookIdentityUser> userManager;
+        private readonly PluralSightBookDbContext context;
 
-        public ProfileController(UserManager<PluralSightBookIdentityUser> userManager)
+        public ProfileController(
+            UserManager<PluralSightBookIdentityUser> userManager,
+            PluralSightBookDbContext context)
         {
             this.userManager = userManager;
+            this.context = context;
         }
 
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
             var viewModel = new ProfileViewModel();
 
-            viewModel.Name = userManager.GetUserName(User);
+            var user = await userManager.GetUserAsync(User);
+
+            viewModel.Name = user.UserName;
+            viewModel.FavoriteAuthor = user.FavoriteAuthor;
 
             return View(viewModel);
         }
@@ -44,10 +52,10 @@ namespace PluralSightBook.Web.Controllers
             {
                 var user = await userManager.GetUserAsync(User);
 
-                //TODO: The process of saving the favorite author is not implemented
                 user.FavoriteAuthor = model.FavoriteAuthor;
+                await this.context.SaveChangesAsync();
 
-                return RedirectToAction("Profile");
+                return RedirectToAction("Profile", "Profile", model);
             }
 
             return View();

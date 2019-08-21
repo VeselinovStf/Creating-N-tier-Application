@@ -46,7 +46,6 @@ namespace PluralSightBook.Web.Controllers
 
                 //TODO: The process of saving the favorite author is not implemented
                 user.FavoriteAuthor = model.FavoriteAuthor;
-                user.
 
                 return RedirectToAction("Profile");
             }

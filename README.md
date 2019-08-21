@@ -39,9 +39,17 @@ In part 1 of this series, you'll learn why separating software application logic
 
 ### TODO LIST
 
-- Add Menu Link To friends
-- Create Friends Page
-- Show Current Friends on Page
-- Link to Add Friend page
-- Create Add Frient Page
-- Remove on current Friends Page
+X - Add Menu Link To friends
+X - Create Friends Page
+X - Show Current Friends on Page
+X - Link to Add Friend page
+X - Create Add Frient Page
+X - Remove on current Friends Page
+
+### More Requirements
+
+Notifications on Add Friend 
+- Send application users who are already friends an email notifying them of the reciprocal friendship  
+- Send non-application users an invitation to register and add friend  
+- Send application users a link to add friend if they’re not already friends  
+- Implement separate quick add link supporting email in querystring 

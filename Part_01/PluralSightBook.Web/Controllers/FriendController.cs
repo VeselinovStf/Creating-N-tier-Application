@@ -22,9 +22,19 @@ namespace PluralSightBook.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            var dbFriends = this.context.Friends.ToList();
+            var currentUser = await
+                  userManager.GetUserAsync(User);
+
+            var dbFriends = this.context
+                .Friends
+                .Where(f => f.PluralSightBookIdentityUser == currentUser.Id);
+
+            if (dbFriends == null)
+            {
+                return View();
+            }
 
             var model = dbFriends.Select(f => new FriendsViewModel()
             {
@@ -46,23 +56,23 @@ namespace PluralSightBook.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await
+                var friendToAdd = await
                     userManager.FindByEmailAsync(model.Email);
 
-                if (user == null)
+                if (friendToAdd == null)
                 {
                     ViewData["Error"] = "No Such User";
                     return View();
                 }
 
                 // TODO: STOP DUPLICATES
-                if (user.Friends.FirstOrDefault(f => f.Email == model.Email) != null)
+                if (friendToAdd.Friends.FirstOrDefault(f => f.Email == model.Email) != null)
                 {
                     ViewData["Error"] = "You are already friend with this user";
                     return View();
                 }
 
-                user.Friends.Add(new Data.Models.Friend()
+                friendToAdd.Friends.Add(new Data.Models.Friend()
                 {
                     Email = model.Email,
                 });

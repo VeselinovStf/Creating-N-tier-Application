@@ -1,0 +1,11 @@
+﻿@model FriendsViewModel
+
+<h1>Add Friend</h1>
+<h4>@ViewData["Error"]</h4>
+<form asp-controller="Friend" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <button type="submit">Add</button>
+</form>

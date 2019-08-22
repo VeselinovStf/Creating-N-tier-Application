@@ -6,4 +6,5 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li><a asp-controller="Profile" asp-action="Profile">Profile</a></li>
+    <li><a asp-controller="Friend" asp-action="List">Friends</a></li>
 }

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FriendsViewModel>
+
+<h1>Friends</h1>
+<a asp-controller="Friend" asp-action="Add">Add Friend</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>E-Mail</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var friend in Model)
+        {
+            <tr>
+                <td>
+                    @friend.Email
+                </td>
+                <td>
+                    <a asp-controller="Friend" asp-action="Remove" asp-route-friendEmail="@friend.Email">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

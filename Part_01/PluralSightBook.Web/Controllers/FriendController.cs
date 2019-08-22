@@ -105,6 +105,29 @@ namespace PluralSightBook.Web.Controllers
 
         public async Task<IActionResult> Remove(string friendEmail)
         {
+            if (string.IsNullOrWhiteSpace(friendEmail))
+            {
+                return RedirectToAction("List", "Friend");
+            }
+
+            var currentUser = await
+                userManager.GetUserAsync(User);
+
+            var currentUserFriendsList = this.context.Friends
+                   .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted)
+                   .ToList();
+
+            var userToRemove = currentUserFriendsList.FirstOrDefault(f => f.Email == friendEmail);
+
+            if (userToRemove == null)
+            {
+                return RedirectToAction("List", "Friend");
+            }
+
+            userToRemove.IsDeleted = true;
+
+            await this.context.SaveChangesAsync();
+
             return RedirectToAction("List", "Friend");
         }
     }

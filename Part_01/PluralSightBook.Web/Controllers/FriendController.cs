@@ -29,7 +29,7 @@ namespace PluralSightBook.Web.Controllers
 
             var dbFriends = this.context
                 .Friends
-                .Where(f => f.PluralSightBookIdentityUser == currentUser.Id);
+                .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted);
 
             if (dbFriends == null)
             {
@@ -66,7 +66,8 @@ namespace PluralSightBook.Web.Controllers
                 }
 
                 var currentUserFriendsList = this.context.Friends
-                    .Where(f => f.PluralSightBookIdentityUser == currentUser.Id).ToList();
+                    .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted)
+                    .ToList();
 
                 if (currentUserFriendsList.FirstOrDefault(f => f.Email == model.Email) != null)
                 {

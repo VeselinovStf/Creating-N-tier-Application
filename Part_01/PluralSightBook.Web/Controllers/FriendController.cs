@@ -56,6 +56,24 @@ namespace PluralSightBook.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                var currentUser = await
+                 userManager.GetUserAsync(User);
+
+                if (currentUser.Email == model.Email)
+                {
+                    ViewData["Error"] = "Can't add your self ass friend";
+                    return View();
+                }
+
+                var currentUserFriendsList = this.context.Friends
+                    .Where(f => f.PluralSightBookIdentityUser == currentUser.Id).ToList();
+
+                if (currentUserFriendsList.FirstOrDefault(f => f.Email == model.Email) != null)
+                {
+                    ViewData["Error"] = "You are already friend with this user";
+                    return View();
+                }
+
                 var friendToAdd = await
                     userManager.FindByEmailAsync(model.Email);
 
@@ -65,14 +83,13 @@ namespace PluralSightBook.Web.Controllers
                     return View();
                 }
 
-                // TODO: STOP DUPLICATES
                 if (friendToAdd.Friends.FirstOrDefault(f => f.Email == model.Email) != null)
                 {
                     ViewData["Error"] = "You are already friend with this user";
                     return View();
                 }
 
-                friendToAdd.Friends.Add(new Data.Models.Friend()
+                currentUser.Friends.Add(new Data.Models.Friend()
                 {
                     Email = model.Email,
                 });

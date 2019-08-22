@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <td>E-Mail</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
             <tr>
                 <td>
                     @friend.Email
+                </td>
+                <td>
+                    <a asp-controller="Friend" asp-action="Remove" asp-route-id="@friend.Email">Remove</a>
                 </td>
             </tr>
         }

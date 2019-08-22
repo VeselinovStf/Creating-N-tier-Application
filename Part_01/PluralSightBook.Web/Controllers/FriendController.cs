@@ -74,5 +74,10 @@ namespace PluralSightBook.Web.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Remove(string friendEmail)
+        {
+            return RedirectToAction("List", "Friend");
+        }
     }
 }

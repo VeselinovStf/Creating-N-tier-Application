@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PluralSightBook.BLL;
 using PluralSightBook.DLL.Data;
 using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Profile;
@@ -13,23 +14,27 @@ namespace PluralSightBook.Web.Controllers
     {
         private readonly UserManager<PluralSightBookIdentityUser> userManager;
         private readonly PluralSightBookDbContext context;
+        private readonly ProfileService profileService;
 
         public ProfileController(
             UserManager<PluralSightBookIdentityUser> userManager,
-            PluralSightBookDbContext context)
+            PluralSightBookDbContext context,
+            ProfileService profileService)
         {
             this.userManager = userManager;
             this.context = context;
+            this.profileService = profileService;
         }
 
         public async Task<IActionResult> Profile()
         {
-            var viewModel = new ProfileViewModel();
+            var profileServiceModel = await this.profileService.Profile(User);
 
-            var user = await userManager.GetUserAsync(User);
-
-            viewModel.Name = user.UserName;
-            viewModel.FavoriteAuthor = user.FavoriteAuthor;
+            var viewModel = new ProfileViewModel()
+            {
+                Name = profileServiceModel.Name,
+                FavoriteAuthor = profileServiceModel.FavoriteAuthor
+            };
 
             return View(viewModel);
         }

@@ -35,6 +35,7 @@ namespace PluralSightBook.Web
             ConfigureIdentitySettings(services);
 
             services.AddTransient<FriendService>();
+            services.AddTransient<ProfileService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

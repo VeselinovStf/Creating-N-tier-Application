@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PluralSightBook.Web.Data;
-using PluralSightBook.Web.Identity;
+using PluralSightBook.DLL.Data;
+using PluralSightBook.DLL.Data.Models;
+using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Friend;
 using System.Linq;
 using System.Threading.Tasks;
@@ -90,7 +91,7 @@ namespace PluralSightBook.Web.Controllers
                     return View();
                 }
 
-                currentUser.Friends.Add(new Data.Models.Friend()
+                currentUser.Friends.Add(new Friend()
                 {
                     Email = model.Email,
                 });

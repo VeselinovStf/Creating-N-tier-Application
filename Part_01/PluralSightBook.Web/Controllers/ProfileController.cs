@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using PluralSightBook.Web.Data;
-using PluralSightBook.Web.Identity;
+using PluralSightBook.DLL.Data;
+using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Profile;
 using System.Threading.Tasks;
 

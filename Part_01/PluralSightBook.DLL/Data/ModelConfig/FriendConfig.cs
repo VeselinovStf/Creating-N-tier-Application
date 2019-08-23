@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PluralSightBook.Web.Data.Models;
+using PluralSightBook.DLL.Data.Models;
 
-namespace PluralSightBook.Web.Data.ModelConfig
+namespace PluralSightBook.DLL.Data.ModelConfig
 {
     public class FriendConfig : IEntityTypeConfiguration<Friend>
     {

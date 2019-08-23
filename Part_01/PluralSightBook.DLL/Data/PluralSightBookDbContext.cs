@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PluralSightBook.Web.Data.ModelConfig;
-using PluralSightBook.Web.Data.Models;
-using PluralSightBook.Web.Identity;
+using PluralSightBook.DLL.Data.ModelConfig;
+using PluralSightBook.DLL.Data.Models;
+using PluralSightBook.DLL.Identity;
 
-namespace PluralSightBook.Web.Data
+namespace PluralSightBook.DLL.Data
 {
     public class PluralSightBookDbContext : IdentityDbContext<PluralSightBookIdentityUser>
     {

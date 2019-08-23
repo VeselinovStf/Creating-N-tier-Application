@@ -3,15 +3,18 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PluralSightBook.Web.Data;
+using PluralSightBook.DLL.Data;
 
-namespace PluralSightBook.Web.Migrations
+
+namespace PluralSightBook.DLL.Migrations
 {
     [DbContext(typeof(PluralSightBookDbContext))]
-    partial class PluralSightBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190818045933_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,25 +132,6 @@ namespace PluralSightBook.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PluralSightBook.Web.Data.Models.Friend", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("PluralSightBookIdentityUser");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PluralSightBookIdentityUser");
-
-                    b.ToTable("Friends");
-                });
-
             modelBuilder.Entity("PluralSightBook.Web.Identity.PluralSightBookIdentityUser", b =>
                 {
                     b.Property<string>("Id")
@@ -162,8 +146,6 @@ namespace PluralSightBook.Web.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FavoriteAuthor");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -244,13 +226,6 @@ namespace PluralSightBook.Web.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PluralSightBook.Web.Data.Models.Friend", b =>
-                {
-                    b.HasOne("PluralSightBook.Web.Identity.PluralSightBookIdentityUser", "IdentityUser")
-                        .WithMany("Friends")
-                        .HasForeignKey("PluralSightBookIdentityUser");
                 });
 #pragma warning restore 612, 618
         }

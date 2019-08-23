@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PluralSightBook.Web.Data;
+using PluralSightBook.DLL.Data;
 
-namespace PluralSightBook.Web.Migrations
+namespace PluralSightBook.DLL.Migrations
 {
     [DbContext(typeof(PluralSightBookDbContext))]
-    [Migration("20190818101902_Adding Friends Table")]
-    partial class AddingFriendsTable
+    [Migration("20190818064302_FavoriteAuthor field to User")]
+    partial class FavoriteAuthorfieldtoUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,23 +131,6 @@ namespace PluralSightBook.Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PluralSightBook.Web.Data.Models.Friend", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("PluralSightBookIdentityUser");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PluralSightBookIdentityUser");
-
-                    b.ToTable("Friends");
-                });
-
             modelBuilder.Entity("PluralSightBook.Web.Identity.PluralSightBookIdentityUser", b =>
                 {
                     b.Property<string>("Id")
@@ -244,13 +227,6 @@ namespace PluralSightBook.Web.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PluralSightBook.Web.Data.Models.Friend", b =>
-                {
-                    b.HasOne("PluralSightBook.Web.Identity.PluralSightBookIdentityUser", "IdentityUser")
-                        .WithMany("Friends")
-                        .HasForeignKey("PluralSightBookIdentityUser");
                 });
 #pragma warning restore 612, 618
         }

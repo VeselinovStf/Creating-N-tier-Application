@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PluralSightBook.Web.Data;
-using PluralSightBook.Web.Identity;
+using PluralSightBook.DLL.Data;
+using PluralSightBook.DLL.Identity;
 
 namespace PluralSightBook.Web
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PluralSightBook.Web.Migrations
+namespace PluralSightBook.DLL.Migrations
 {
     public partial class FavoriteAuthorfieldtoUser : Migration
     {

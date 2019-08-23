@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using PluralSightBook.Web.Data.Models;
+using PluralSightBook.DLL.Data.Models;
 using System.Collections.Generic;
 
-namespace PluralSightBook.Web.Identity
+namespace PluralSightBook.DLL.Identity
 {
     public class PluralSightBookIdentityUser : IdentityUser
     {

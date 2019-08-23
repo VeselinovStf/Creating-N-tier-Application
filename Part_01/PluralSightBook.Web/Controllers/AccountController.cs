@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PluralSightBook.Web.Identity;
+using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Identity;
 using System.Threading.Tasks;
 

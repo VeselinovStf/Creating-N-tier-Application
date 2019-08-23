@@ -1,6 +1,6 @@
-﻿using PluralSightBook.Web.Identity;
+﻿using PluralSightBook.DLL.Identity;
 
-namespace PluralSightBook.Web.Data.Models
+namespace PluralSightBook.DLL.Data.Models
 {
     public class Friend
     {

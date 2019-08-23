@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace PluralSightBook.Web.Migrations
+namespace PluralSightBook.DLL.Migrations
 {
     public partial class Initial : Migration
     {

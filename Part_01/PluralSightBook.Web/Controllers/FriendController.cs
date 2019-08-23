@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PluralSightBook.BLL;
+using PluralSightBook.BLL.Exceptions;
 using PluralSightBook.DLL.Data;
-using PluralSightBook.DLL.Data.Models;
 using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Friend;
 using System.Linq;
@@ -60,46 +60,25 @@ namespace PluralSightBook.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var currentUser = await
-                 userManager.GetUserAsync(User);
-
-                if (currentUser.Email == model.Email)
+                try
                 {
-                    ViewData["Error"] = "Can't add your self ass friend";
+                    await this.friendService.Add(model.Email, User);
+                }
+                catch (AddYourSelfAsFriendException ex)
+                {
+                    ViewData["Error"] = ex.Message;
                     return View();
                 }
-
-                var currentUserFriendsList = this.context.Friends
-                    .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted)
-                    .ToList();
-
-                if (currentUserFriendsList.FirstOrDefault(f => f.Email == model.Email) != null)
+                catch (AlreadyFriendWithThisUserException ex)
                 {
-                    ViewData["Error"] = "You are already friend with this user";
+                    ViewData["Error"] = ex.Message;
                     return View();
                 }
-
-                var friendToAdd = await
-                    userManager.FindByEmailAsync(model.Email);
-
-                if (friendToAdd == null)
+                catch (NoSuchUserException ex)
                 {
-                    ViewData["Error"] = "No Such User";
+                    ViewData["Error"] = ex.Message;
                     return View();
                 }
-
-                if (friendToAdd.Friends.FirstOrDefault(f => f.Email == model.Email) != null)
-                {
-                    ViewData["Error"] = "You are already friend with this user";
-                    return View();
-                }
-
-                currentUser.Friends.Add(new Friend()
-                {
-                    Email = model.Email,
-                });
-
-                await this.context.SaveChangesAsync();
 
                 return RedirectToAction("List", "Friend");
             }

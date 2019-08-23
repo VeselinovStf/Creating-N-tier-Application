@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PluralSightBook.BLL;
 using PluralSightBook.DLL.Data;
 using PluralSightBook.DLL.Data.Models;
 using PluralSightBook.DLL.Identity;
@@ -15,34 +16,36 @@ namespace PluralSightBook.Web.Controllers
     {
         private readonly PluralSightBookDbContext context;
         private readonly UserManager<PluralSightBookIdentityUser> userManager;
+        private readonly FriendService friendService;
 
-        public FriendController(PluralSightBookDbContext context, UserManager<PluralSightBookIdentityUser> userManager)
+        public FriendController(
+            PluralSightBookDbContext context,
+            UserManager<PluralSightBookIdentityUser> userManager,
+            FriendService friendService)
         {
             this.context = context;
             this.userManager = userManager;
+            this.friendService = friendService;
         }
 
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var currentUser = await
-                  userManager.GetUserAsync(User);
+            try
+            {
+                var friendsServiceList = await this.friendService.List(User);
 
-            var dbFriends = this.context
-                .Friends
-                .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted);
+                var model = friendsServiceList.Select(f => new FriendsViewModel()
+                {
+                    Email = f.Email
+                });
 
-            if (dbFriends == null)
+                return View(model);
+            }
+            catch
             {
                 return View();
             }
-
-            var model = dbFriends.Select(f => new FriendsViewModel()
-            {
-                Email = f.Email
-            });
-
-            return View(model);
         }
 
         [HttpGet]

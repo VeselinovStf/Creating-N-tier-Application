@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PluralSightBook.BLL;
 using PluralSightBook.DLL.Data;
 using PluralSightBook.DLL.Identity;
 
@@ -32,6 +33,8 @@ namespace PluralSightBook.Web
 
             ConfigureDbConnectionSettings(services);
             ConfigureIdentitySettings(services);
+
+            services.AddTransient<FriendService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

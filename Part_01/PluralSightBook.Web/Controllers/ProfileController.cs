@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PluralSightBook.BLL;
-using PluralSightBook.DLL.Data;
-using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Profile;
 using System;
 using System.Threading.Tasks;
@@ -13,17 +10,10 @@ namespace PluralSightBook.Web.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly UserManager<PluralSightBookIdentityUser> userManager;
-        private readonly PluralSightBookDbContext context;
         private readonly ProfileService profileService;
 
-        public ProfileController(
-            UserManager<PluralSightBookIdentityUser> userManager,
-            PluralSightBookDbContext context,
-            ProfileService profileService)
+        public ProfileController(ProfileService profileService)
         {
-            this.userManager = userManager;
-            this.context = context;
             this.profileService = profileService;
         }
 

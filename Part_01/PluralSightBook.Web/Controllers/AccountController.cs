@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PluralSightBook.Web.Controllers
 {
+    //NOTE: For the course purpose this controler is not going to be reformated
     public class AccountController : Controller
     {
         private readonly UserManager<PluralSightBookIdentityUser> _userManager;

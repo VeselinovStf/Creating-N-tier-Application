@@ -43,11 +43,22 @@ namespace PluralSightBook.Web.Controllers
         [HttpGet]
         public IActionResult EditProfile()
         {
-            var viewModel = new ProfileViewModel();
+            try
+            {
+                var serviceModel = this.profileService.GetProfile(User);
 
-            viewModel.Name = userManager.GetUserName(User);
+                var viewModel = new ProfileViewModel()
+                {
+                    Name = serviceModel.Name
+                };
 
-            return View(viewModel);
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                //TODO: Log this exception, and manage view display
+                return View();
+            }
         }
 
         [HttpPost]

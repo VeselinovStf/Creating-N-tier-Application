@@ -40,5 +40,14 @@ namespace PluralSightBook.BLL
 
             await this.context.SaveChangesAsync();
         }
+
+        public ProfileViewModelDTO GetProfile(ClaimsPrincipal user)
+        {
+            var viewModel = new ProfileViewModelDTO();
+
+            viewModel.Name = userManager.GetUserName(user);
+
+            return viewModel;
+        }
     }
 }

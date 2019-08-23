@@ -1,5 +1,3 @@
-using System;
-
 namespace PluralSightBook.Web.Models
 {
     public class ErrorViewModel

@@ -86,5 +86,31 @@ namespace PluralSightBook.BLL
 
             await this.context.SaveChangesAsync();
         }
+
+        public async Task Remove(string friendEmail, ClaimsPrincipal user)
+        {
+            if (string.IsNullOrWhiteSpace(friendEmail))
+            {
+                throw new StringParameterException("Invalid imput");
+            }
+
+            var currentUser = await
+                userManager.GetUserAsync(user);
+
+            var currentUserFriendsList = this.context.Friends
+                   .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted)
+                   .ToList();
+
+            var userToRemove = currentUserFriendsList.FirstOrDefault(f => f.Email == friendEmail);
+
+            if (userToRemove == null)
+            {
+                throw new NoSuchUserToRemoveException("No such user to remove");
+            }
+
+            userToRemove.IsDeleted = true;
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }

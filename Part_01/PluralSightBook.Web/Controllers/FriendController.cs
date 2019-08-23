@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PluralSightBook.BLL;
 using PluralSightBook.BLL.Exceptions;
-using PluralSightBook.DLL.Data;
-using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Friend;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,17 +12,10 @@ namespace PluralSightBook.Web.Controllers
     [Authorize]
     public class FriendController : Controller
     {
-        private readonly PluralSightBookDbContext context;
-        private readonly UserManager<PluralSightBookIdentityUser> userManager;
         private readonly FriendService friendService;
 
-        public FriendController(
-            PluralSightBookDbContext context,
-            UserManager<PluralSightBookIdentityUser> userManager,
-            FriendService friendService)
+        public FriendController(FriendService friendService)
         {
-            this.context = context;
-            this.userManager = userManager;
             this.friendService = friendService;
         }
 
@@ -42,8 +33,13 @@ namespace PluralSightBook.Web.Controllers
 
                 return View(model);
             }
-            catch
+            catch (EmptyFriendsListException)
             {
+                return View();
+            }
+            catch (Exception)
+            {
+                //TODO: Log this exception
                 return View();
             }
         }
@@ -79,6 +75,11 @@ namespace PluralSightBook.Web.Controllers
                     ViewData["Error"] = ex.Message;
                     return View();
                 }
+                catch (Exception)
+                {
+                    //TODO: Log this exception
+                    return View();
+                }
 
                 return RedirectToAction("List", "Friend");
             }
@@ -88,28 +89,23 @@ namespace PluralSightBook.Web.Controllers
 
         public async Task<IActionResult> Remove(string friendEmail)
         {
-            if (string.IsNullOrWhiteSpace(friendEmail))
+            try
+            {
+                await this.friendService.Remove(friendEmail, User);
+            }
+            catch (StringParameterException)
             {
                 return RedirectToAction("List", "Friend");
             }
-
-            var currentUser = await
-                userManager.GetUserAsync(User);
-
-            var currentUserFriendsList = this.context.Friends
-                   .Where(f => f.PluralSightBookIdentityUser == currentUser.Id && !f.IsDeleted)
-                   .ToList();
-
-            var userToRemove = currentUserFriendsList.FirstOrDefault(f => f.Email == friendEmail);
-
-            if (userToRemove == null)
+            catch (NoSuchUserToRemoveException)
             {
                 return RedirectToAction("List", "Friend");
             }
-
-            userToRemove.IsDeleted = true;
-
-            await this.context.SaveChangesAsync();
+            catch (Exception)
+            {
+                //TODO: Log this exception
+                return View();
+            }
 
             return RedirectToAction("List", "Friend");
         }

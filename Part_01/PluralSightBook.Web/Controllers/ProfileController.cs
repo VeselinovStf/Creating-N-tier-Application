@@ -5,6 +5,7 @@ using PluralSightBook.BLL;
 using PluralSightBook.DLL.Data;
 using PluralSightBook.DLL.Identity;
 using PluralSightBook.Web.ViewModels.Profile;
+using System;
 using System.Threading.Tasks;
 
 namespace PluralSightBook.Web.Controllers
@@ -55,12 +56,17 @@ namespace PluralSightBook.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.GetUserAsync(User);
+                try
+                {
+                    await this.profileService.EditProfile(model.FavoriteAuthor, User);
 
-                user.FavoriteAuthor = model.FavoriteAuthor;
-                await this.context.SaveChangesAsync();
-
-                return RedirectToAction("Profile", "Profile", model);
+                    return RedirectToAction("Profile", "Profile", model);
+                }
+                catch (Exception)
+                {
+                    //TODO: Log this exception
+                    return View();
+                }
             }
 
             return View();

@@ -31,5 +31,14 @@ namespace PluralSightBook.BLL
 
             return viewModel;
         }
+
+        public async Task EditProfile(string modelFavoriteAuthor, ClaimsPrincipal user)
+        {
+            var currentUser = await userManager.GetUserAsync(user);
+
+            currentUser.FavoriteAuthor = modelFavoriteAuthor;
+
+            await this.context.SaveChangesAsync();
+        }
     }
 }

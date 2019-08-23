@@ -10,7 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{A66B2BC5-C31C-4ADB-8820-301A4AC4CCC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluralSightBook.Web", "PluralSightBook.Web\PluralSightBook.Web.csproj", "{663C22DD-3592-4D98-B510-56275400EC3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluralSightBook.Web", "PluralSightBook.Web\PluralSightBook.Web.csproj", "{663C22DD-3592-4D98-B510-56275400EC3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{A8E90266-54DE-4533-A0CB-BEEC869D3FAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluralSightBook.DLL", "PluralSightBook.DLL\PluralSightBook.DLL.csproj", "{C3425E0A-03F0-477B-835B-C6AB39E31860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,12 +26,17 @@ Global
 		{663C22DD-3592-4D98-B510-56275400EC3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{663C22DD-3592-4D98-B510-56275400EC3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{663C22DD-3592-4D98-B510-56275400EC3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3425E0A-03F0-477B-835B-C6AB39E31860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3425E0A-03F0-477B-835B-C6AB39E31860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3425E0A-03F0-477B-835B-C6AB39E31860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3425E0A-03F0-477B-835B-C6AB39E31860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{663C22DD-3592-4D98-B510-56275400EC3F} = {A66B2BC5-C31C-4ADB-8820-301A4AC4CCC8}
+		{C3425E0A-03F0-477B-835B-C6AB39E31860} = {A8E90266-54DE-4533-A0CB-BEEC869D3FAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65A4BE06-2533-4D3C-B501-1170526DB2C2}

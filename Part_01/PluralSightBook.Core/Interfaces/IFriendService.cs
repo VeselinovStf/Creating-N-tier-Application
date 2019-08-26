@@ -9,7 +9,6 @@ namespace PluralSightBook.Core.Interfaces
     {
         Task AddFriend(Guid currentUserId,
             string currentUserEmail,
-            string currentUserName,
             string friendEmail);
 
         void DeleteFriend(int friendId);

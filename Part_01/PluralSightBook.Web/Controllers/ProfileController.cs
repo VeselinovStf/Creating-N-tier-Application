@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PluralSightBook.BLL;
+using PluralSightBook.Core.Identity.Helpers;
+using PluralSightBook.Core.Interfaces;
 using PluralSightBook.Web.ViewModels.Profile;
 using System;
 using System.Threading.Tasks;
@@ -10,16 +11,16 @@ namespace PluralSightBook.Web.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly ProfileService profileService;
+        private readonly IProfileService profileService;
 
-        public ProfileController(ProfileService profileService)
+        public ProfileController(IProfileService profileService)
         {
             this.profileService = profileService;
         }
 
         public async Task<IActionResult> Profile()
         {
-            var profileServiceModel = await this.profileService.Profile(User);
+            var profileServiceModel = await this.profileService.Profile(this.User.GetUserId());
 
             var viewModel = new ProfileViewModel()
             {
@@ -31,11 +32,11 @@ namespace PluralSightBook.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditProfile()
+        public async Task<IActionResult> EditProfile()
         {
             try
             {
-                var serviceModel = this.profileService.GetProfile(User);
+                var serviceModel = await this.profileService.GetProfile(this.User.GetUserId());
 
                 var viewModel = new ProfileViewModel()
                 {
@@ -59,7 +60,7 @@ namespace PluralSightBook.Web.Controllers
             {
                 try
                 {
-                    await this.profileService.EditProfile(model.FavoriteAuthor, User);
+                    await this.profileService.EditProfile(model.FavoriteAuthor, this.User.GetUserId());
 
                     return RedirectToAction("Profile", "Profile", model);
                 }

@@ -22,7 +22,6 @@ namespace PluralSightBook.Core.Services
 
         public async Task AddFriend(Guid currentUserId,
             string currentUserEmail,
-            string currentUserName,
             string friendEmail)
         {
             if (currentUserEmail == friendEmail)
@@ -49,7 +48,7 @@ namespace PluralSightBook.Core.Services
                 throw new AlreadyFriendWithThisUserException("You are already friend with this user");
             }
 
-            _friendRepository.Create(friendEmail);
+            _friendRepository.Create(friendEmail, currentUserId);
         }
 
         public void DeleteFriend(int friendId)
@@ -68,6 +67,7 @@ namespace PluralSightBook.Core.Services
 
             var model = dbFriends.Select(f => new FriendsViewModelDTO()
             {
+                Id = f.Id,
                 Email = f.Email
             }).ToList();
 

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PluralSightBook.BLL;
-using PluralSightBook.BLL.Exceptions;
+using PluralSightBook.Core.Exceptions;
+using PluralSightBook.Core.Identity.Helpers;
+using PluralSightBook.Core.Interfaces;
 using PluralSightBook.Web.ViewModels.Friend;
 using System;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace PluralSightBook.Web.Controllers
     [Authorize]
     public class FriendController : Controller
     {
-        private readonly FriendService friendService;
+        private readonly IFriendService friendService;
+        private readonly IProfileService profileService;
 
-        public FriendController(FriendService friendService)
+        public FriendController(IFriendService friendService, IProfileService profileService)
         {
             this.friendService = friendService;
+            this.profileService = profileService;
         }
 
         [HttpGet]
@@ -24,10 +27,11 @@ namespace PluralSightBook.Web.Controllers
         {
             try
             {
-                var friendsServiceList = await this.friendService.List(User);
+                var friendsServiceList = this.friendService.ListFriendsOf(this.User.GetUserId());
 
                 var model = friendsServiceList.Select(f => new FriendsViewModel()
                 {
+                    Id = f.Id,
                     Email = f.Email
                 });
 
@@ -58,7 +62,9 @@ namespace PluralSightBook.Web.Controllers
             {
                 try
                 {
-                    await this.friendService.Add(model.Email, User);
+                    var currentUser = await this.profileService.GetProfile(this.User.GetUserId());
+
+                    await this.friendService.AddFriend(this.User.GetUserId(), currentUser.Name, model.Email);
                 }
                 catch (AddYourSelfAsFriendException ex)
                 {
@@ -87,11 +93,11 @@ namespace PluralSightBook.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Remove(string friendEmail)
+        public async Task<IActionResult> Remove(int friendId)
         {
             try
             {
-                await this.friendService.Remove(friendEmail, User);
+                this.friendService.DeleteFriend(friendId);
             }
             catch (StringParameterException)
             {

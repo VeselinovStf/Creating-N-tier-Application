@@ -6,7 +6,7 @@ namespace PluralSightBook.Core.Interfaces
 {
     public interface IFriendRepository
     {
-        void Create(string emailAddress);
+        void Create(string emailAddress, Guid currentUserId);
 
         void Delete(int friendId);
 

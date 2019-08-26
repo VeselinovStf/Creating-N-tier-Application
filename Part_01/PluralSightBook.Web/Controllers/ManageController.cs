@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using PluralSightBook.DLL.Identity;
+using PluralSightBook.Core.Identity;
 using PluralSightBook.Web.ViewModels.Identity;
 using System;
 using System.Collections.Generic;

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PluralSightBook.BLL;
-using PluralSightBook.DLL.Data;
-using PluralSightBook.DLL.Identity;
+using PluralSightBook.Core.Identity;
+using PluralSightBook.Core.Interfaces;
+using PluralSightBook.Core.Services;
+using PluralSightBook.Infrastructure.Data;
+using PluralSightBook.Infrastructure.Repositories;
 
 namespace PluralSightBook.Web
 {
@@ -34,8 +36,10 @@ namespace PluralSightBook.Web
             ConfigureDbConnectionSettings(services);
             ConfigureIdentitySettings(services);
 
-            services.AddTransient<FriendService>();
-            services.AddTransient<ProfileService>();
+            services.AddTransient<IProfileService, ProfileService>();
+            services.AddTransient<IFriendService, FriendsService>();
+            services.AddTransient<IProfileRepository, EfProfileRepository>();
+            services.AddTransient<IFriendRepository, EfFriendRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

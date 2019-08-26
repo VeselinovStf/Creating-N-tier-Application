@@ -16,12 +16,15 @@ namespace PluralSightBook.Infrastructure.Repositories
             this.context = context;
         }
 
-        public void Create(string emailAddress)
+        public void Create(string emailAddress, Guid currentUserId)
         {
             var newFriend = new Friend();
 
             newFriend.Email = emailAddress;
+            newFriend.PluralSightBookIdentityUser = currentUserId.ToString();
+
             context.Friends.Add(newFriend);
+
             context.SaveChanges();
         }
 
@@ -35,7 +38,7 @@ namespace PluralSightBook.Infrastructure.Repositories
         public IEnumerable<Friend> ListFriendsOfUser(Guid userId)
         {
             return context.Friends
-                .Where(f => f.Id.ToString() == userId.ToString())
+                .Where(f => f.PluralSightBookIdentityUser.ToString() == userId.ToString() && !f.IsDeleted)
                 .Select(f => new Friend()
                 {
                     Id = f.Id,

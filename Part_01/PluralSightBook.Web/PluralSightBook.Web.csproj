@@ -13,9 +13,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\PluralSightBook.BLL\PluralSightBook.BLL.csproj" />
     <ProjectReference Include="..\PluralSightBook.Core\PluralSightBook.Core.csproj" />
-    <ProjectReference Include="..\PluralSightBook.DLL\PluralSightBook.DLL.csproj" />
     <ProjectReference Include="..\PluralSightBook.Infrastructure\PluralSightBook.Infrastructure.csproj" />
   </ItemGroup>
 

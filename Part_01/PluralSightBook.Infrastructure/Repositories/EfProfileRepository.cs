@@ -18,6 +18,14 @@ namespace PluralSightBook.Infrastructure.Repositories
             this.userManager = userManager;
         }
 
+        public async Task EditProfile(string modelFavoriteAuthor, Guid userId)
+        {
+            var user = await this.userManager.FindByIdAsync(userId.ToString());
+            user.FavoriteAuthor = modelFavoriteAuthor;
+
+            await this.context.SaveChangesAsync();
+        }
+
         public async Task<PluralSightBookIdentityUser> GetUser(Guid userId)
         {
             return await this.userManager.FindByIdAsync(userId.ToString());

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PluralSightBook.Core.Services
 {
-    public class FriendsService
+    public class FriendsService : IFriendService
     {
         private readonly IFriendRepository _friendRepository;
         private readonly IProfileRepository _profileRepository;

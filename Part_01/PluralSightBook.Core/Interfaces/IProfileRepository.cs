@@ -7,5 +7,7 @@ namespace PluralSightBook.Core.Interfaces
     public interface IProfileRepository
     {
         Task<PluralSightBookIdentityUser> GetUser(Guid userId);
+
+        Task EditProfile(string modelFavoriteAuthor, Guid userId);
     }
 }

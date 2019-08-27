@@ -30,16 +30,5 @@ namespace PluralSightBook.Core.Services
         {
             await this.profileRepository.EditProfile(modelFavoriteAuthor, userId);
         }
-
-        public async Task<ProfileViewModelDTO> GetProfile(Guid userId)
-        {
-            var viewModel = new ProfileViewModelDTO();
-
-            var currentUser = await this.profileRepository.GetUser(userId);
-
-            viewModel.Name = currentUser.UserName;
-
-            return viewModel;
-        }
     }
 }

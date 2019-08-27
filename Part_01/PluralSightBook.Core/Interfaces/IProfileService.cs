@@ -9,7 +9,5 @@ namespace PluralSightBook.Core.Interfaces
         Task<ProfileViewModelDTO> Profile(Guid userId);
 
         Task EditProfile(string modelFavoriteAuthor, Guid userId);
-
-        Task<ProfileViewModelDTO> GetProfile(Guid userId);
     }
 }

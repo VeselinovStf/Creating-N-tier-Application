@@ -36,7 +36,7 @@ namespace PluralSightBook.Web.Controllers
         {
             try
             {
-                var serviceModel = await this.profileService.GetProfile(this.User.GetUserId());
+                var serviceModel = await this.profileService.Profile(this.User.GetUserId());
 
                 var viewModel = new ProfileViewModel()
                 {

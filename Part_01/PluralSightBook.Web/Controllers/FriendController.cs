@@ -62,7 +62,7 @@ namespace PluralSightBook.Web.Controllers
             {
                 try
                 {
-                    var currentUser = await this.profileService.GetProfile(this.User.GetUserId());
+                    var currentUser = await this.profileService.Profile(this.User.GetUserId());
 
                     await this.friendService.AddFriend(this.User.GetUserId(), currentUser.Name, model.Email);
                 }

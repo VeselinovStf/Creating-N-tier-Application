@@ -35,5 +35,20 @@ namespace PluralSightBook.Test.Core
             Assert.AreEqual(userName, profileServiceCall.Name);
             Assert.AreEqual(userFavoriteAuthor, profileServiceCall.FavoriteAuthor);
         }
+
+        [TestMethod]
+        public async Task EditProfile_When_CorrectParametersArePassed()
+        {
+            Guid userId = new Guid();
+            var userFavoriteAuthor = "TestUserFavoriteAuthor";
+
+            var profileRepositoryMoq = new Mock<IProfileRepository>();
+
+            var profileService = new ProfileService(profileRepositoryMoq.Object);
+
+            await profileService.EditProfile(userFavoriteAuthor, userId);
+
+            profileRepositoryMoq.Verify(x => x.EditProfile(userFavoriteAuthor, userId), Times.Once);
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace PluralSightBook.Core.Services
                 throw new NoSuchUserException("No Such User");
             }
 
+            //TODO: Something is not right here!!
             if (friendToAdd.Friends.FirstOrDefault(f => f.Email == currentUserEmail) != null)
             {
                 throw new AlreadyFriendWithThisUserException("You are already friend with this user");
@@ -60,6 +61,7 @@ namespace PluralSightBook.Core.Services
         {
             var dbFriends = _friendRepository.ListFriendsOfUser(userId);
 
+            //TODO: Do this or not?
             if (dbFriends == null)
             {
                 throw new EmptyFriendsListException("No Friends to list");

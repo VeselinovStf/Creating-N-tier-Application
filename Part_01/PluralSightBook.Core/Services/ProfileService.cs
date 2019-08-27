@@ -7,18 +7,18 @@ namespace PluralSightBook.Core.Services
 {
     public class ProfileService : IProfileService
     {
-        private readonly IProfileRepository profileService;
+        private readonly IProfileRepository profileRepository;
 
-        public ProfileService(IProfileRepository profileService)
+        public ProfileService(IProfileRepository profileRepository)
         {
-            this.profileService = profileService;
+            this.profileRepository = profileRepository;
         }
 
         public async Task<ProfileViewModelDTO> Profile(Guid userId)
         {
             var viewModel = new ProfileViewModelDTO();
 
-            var currentUser = await this.profileService.GetUser(userId);
+            var currentUser = await this.profileRepository.GetUser(userId);
 
             viewModel.Name = currentUser.UserName;
             viewModel.FavoriteAuthor = currentUser.FavoriteAuthor;
@@ -28,14 +28,14 @@ namespace PluralSightBook.Core.Services
 
         public async Task EditProfile(string modelFavoriteAuthor, Guid userId)
         {
-            await this.profileService.EditProfile(modelFavoriteAuthor, userId);
+            await this.profileRepository.EditProfile(modelFavoriteAuthor, userId);
         }
 
         public async Task<ProfileViewModelDTO> GetProfile(Guid userId)
         {
             var viewModel = new ProfileViewModelDTO();
 
-            var currentUser = await this.profileService.GetUser(userId);
+            var currentUser = await this.profileRepository.GetUser(userId);
 
             viewModel.Name = currentUser.UserName;
 

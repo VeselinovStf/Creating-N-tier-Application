@@ -24,7 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3AD23C8D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreTests", "CoreTests", "{55F66167-82EC-44E0-B6F6-4371A51AA467}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluralSightBook.Test.Core", "PluralSightBook.Test.Core\PluralSightBook.Test.Core.csproj", "{FE0A5C96-5F3F-4E44-B769-F5E276F737CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluralSightBook.Test.Core", "PluralSightBook.Test.Core\PluralSightBook.Test.Core.csproj", "{FE0A5C96-5F3F-4E44-B769-F5E276F737CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluralSightBook.API", "PluralSightBook.API\PluralSightBook.API.csproj", "{395A41E7-89C0-4718-A03B-E641D56A13DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{FE0A5C96-5F3F-4E44-B769-F5E276F737CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE0A5C96-5F3F-4E44-B769-F5E276F737CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE0A5C96-5F3F-4E44-B769-F5E276F737CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{395A41E7-89C0-4718-A03B-E641D56A13DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{395A41E7-89C0-4718-A03B-E641D56A13DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{395A41E7-89C0-4718-A03B-E641D56A13DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{395A41E7-89C0-4718-A03B-E641D56A13DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{082ABC07-9FC5-4F94-87A6-8B0694F69F10} = {E41D3875-2B93-491C-850E-8AFF549B06E7}
 		{55F66167-82EC-44E0-B6F6-4371A51AA467} = {3AD23C8D-DD6B-4CDB-A03B-9E8F968DA6BB}
 		{FE0A5C96-5F3F-4E44-B769-F5E276F737CA} = {55F66167-82EC-44E0-B6F6-4371A51AA467}
+		{395A41E7-89C0-4718-A03B-E641D56A13DC} = {A66B2BC5-C31C-4ADB-8820-301A4AC4CCC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65A4BE06-2533-4D3C-B501-1170526DB2C2}

@@ -29,7 +29,7 @@ namespace PluralSightBook.Web.Controllers
             {
                 var friendsServiceList = this.friendService.ListFriendsOf(this.User.GetUserId());
 
-                var model = friendsServiceList.Select(f => new FriendsViewModel()
+                var model = friendsServiceList.Result.Select(f => new FriendsViewModel()
                 {
                     Id = f.Id,
                     Email = f.Email

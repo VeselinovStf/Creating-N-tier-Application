@@ -170,7 +170,7 @@ namespace PluralSightBook.Test.Core
 
             var friendService = new FriendsService(friendsRepositoryMock.Object, profileRepositoryMock.Object);
 
-            var listOfFriends = friendService.ListFriendsOf(currentUserId).ToArray();
+            var listOfFriends = friendService.ListFriendsOf(currentUserId).Result.ToArray();
 
             Assert.AreEqual(1, listOfFriends.Length);
             Assert.AreEqual(friendId, listOfFriends[0].Id);

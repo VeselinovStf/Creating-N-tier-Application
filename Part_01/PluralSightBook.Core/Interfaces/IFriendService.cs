@@ -13,6 +13,6 @@ namespace PluralSightBook.Core.Interfaces
 
         void DeleteFriend(int friendId);
 
-        IEnumerable<FriendsViewModelDTO> ListFriendsOf(Guid userId);
+        Task<IEnumerable<FriendsViewModelDTO>> ListFriendsOf(Guid userId);
     }
 }

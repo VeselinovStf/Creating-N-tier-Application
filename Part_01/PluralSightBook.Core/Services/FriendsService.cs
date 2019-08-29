@@ -57,7 +57,7 @@ namespace PluralSightBook.Core.Services
             _friendRepository.Delete(friendId);
         }
 
-        public IEnumerable<FriendsViewModelDTO> ListFriendsOf(Guid userId)
+        public async Task<IEnumerable<FriendsViewModelDTO>> ListFriendsOf(Guid userId)
         {
             var dbFriends = _friendRepository.ListFriendsOfUser(userId);
 

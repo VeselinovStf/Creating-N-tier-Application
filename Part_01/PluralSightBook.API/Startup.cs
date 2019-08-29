@@ -10,6 +10,7 @@ using PluralSightBook.Core.Interfaces;
 using PluralSightBook.Core.Services;
 using PluralSightBook.Infrastructure.Data;
 using PluralSightBook.Infrastructure.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace PluralSightBook.API
 {
@@ -34,6 +35,11 @@ namespace PluralSightBook.API
             services.AddTransient<IFriendRepository, EfFriendRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Employee API", Version = "V1" });
+            });
         }
 
         private void ConfigureIdentitySettings(IServiceCollection services)
@@ -62,6 +68,12 @@ namespace PluralSightBook.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "post API V1");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();

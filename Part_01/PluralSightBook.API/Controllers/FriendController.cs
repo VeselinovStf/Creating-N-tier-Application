@@ -25,7 +25,7 @@ namespace PluralSightBook.API.Controllers
             {
                 var serviceCall = this.friendService.ListFriendsOf(userId);
 
-                var model = serviceCall.Select(f => new FriendViewModel()
+                var model = serviceCall.Result.Select(f => new FriendViewModel()
                 {
                     Id = f.Id,
                     Email = f.Email

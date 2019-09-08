@@ -5,23 +5,29 @@ Pluralsight Creating N-Tier Applications in C#  Course Repo
 
 In part 1 of the course, goal is to  learn the pros and cons of separating applications into tiers, and two different ways to go about doing so.
 
-In part 1 of this series, you'll learn why separating software application logic into layers is a common practice, as well as some pros and cons of doing so. You'll see how monolithic applications can evolve into N-Tier applications, including two approaches: Data Centric and Domain Centric (or DDD) designs.
+"In part 1 of this series, you'll learn why separating software application logic into layers is a common practice, as well as some pros and cons of doing so. You'll see how monolithic applications can evolve into N-Tier applications, including two approaches: Data Centric and Domain Centric (or DDD) designs."
+
+"In part 2 of this series, you'll continue to learn about building N-Tier applications using domain driven design techniques. You'll learn how to structure tests within your solution, how to design your application's persistence strategy, and how to reuse your core domain objects between multiple front-end applications."
+
+NOTE: Part 1 and Part 2 are all in Part 1 folder of repo
 
 ### Repo Structure ( different parts of cours are separated in different branch )
 
 #### Branches
 
-	-	MonolithicAppSceleton monolithic sceleton 
-	-	Data-Centric N-Tier Design
-	-	Domain-Centric N-Tier Design
+	- 	master 
+	-	Api_CLI_Update_WebClient CLI-Client
+	-	API
+	- 	Part2_Core_Testing
+	-	Domain Centric Design
+	-	Api_CLI_Update_WebClient
+	-	CLI-Client
 	
 ### Project
 
 -  Sample Application – A Social Web Site 
 
 ## Summary
-
-
 
 -  N-Tier Design can refer to both the logical and physical separation of responsibilities within an application  
 - The terms tier and layer may be used interchangeably, though each has specific meaning as well  
@@ -48,8 +54,7 @@ X - Remove on current Friends Page
 
 ### More Requirements
 
-Notifications on Add Friend 
-- Send application users who are already friends an email notifying them of the reciprocal friendship  
-- Send non-application users an invitation to register and add friend  
-- Send application users a link to add friend if they’re not already friends  
-- Implement separate quick add link supporting email in querystring 
+	-	Transform all to Domain Centric Design
+	-	Add Tests
+	-	Add API
+	-	Add CLI Client that calls API for friend list ( not fully implemented! )

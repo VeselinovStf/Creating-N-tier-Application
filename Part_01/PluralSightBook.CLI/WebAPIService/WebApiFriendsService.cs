@@ -1,19 +1,22 @@
-﻿using PluralSightBook.Core.DTOs;
+﻿using PluralSightBook.CLI.JsonModelBuilder;
+using PluralSightBook.Core.DTOs;
 using PluralSightBook.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PluralSightBook.CLI.WebAPIService
 {
     public class WebApiFriendsService : IFriendService
     {
-        private readonly HttpClient _client;
+        private readonly WebClient _client;
+        private readonly IJsonModelConvertor jsonConvertor;
 
-        public WebApiFriendsService(HttpClient client)
+        public WebApiFriendsService(WebClient client, IJsonModelConvertor jsonConvertor)
         {
             this._client = client;
+            this.jsonConvertor = jsonConvertor;
         }
 
         public Task AddFriend(Guid currentUserId, string currentUserEmail, string friendEmail)
@@ -30,19 +33,14 @@ namespace PluralSightBook.CLI.WebAPIService
         {
             string request = String.Format("api/Friend/{0}", userId.ToString());
 
-            using (_client)
+            using (_client) //WebClient
             {
-                HttpResponseMessage response = await _client.GetAsync(request); // blocking call
+                var result = await _client.DownloadStringTaskAsync(request); //URI
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var friends = response.Content.ReadAsAsync<IEnumerable<FriendsViewModelDTO>>().Result;
+                var jsonresult = this.jsonConvertor.Convert(result);
 
-                    return friends;
-                }
+                return jsonresult;
             }
-
-            return null;
         }
     }
 }

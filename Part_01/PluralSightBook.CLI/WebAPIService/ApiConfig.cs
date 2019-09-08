@@ -1,18 +1,16 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net;
 
 namespace PluralSightBook.CLI.WebAPIService
 {
     public class ApiConfig
     {
-        public static HttpClient GetClient()
+        public static WebClient GetClient()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:44353/");
+            WebClient client = new WebClient();
 
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.Headers.Add("Content-Type:application/json"); //Content-Type
+            client.Headers.Add("Accept:application/json");
+            client.BaseAddress = "https://localhost:44353";
 
             return client;
         }

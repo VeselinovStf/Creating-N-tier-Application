@@ -10,7 +10,7 @@ namespace PluralSightBook.CLI
 
             var friendsReport = StructureMapBootStrap.Configure().GetInstance<FriendsReport>();
 
-            Console.Write(friendsReport.ShowFriendsReport(userEmail));
+            Console.Write(friendsReport.ShowFriendsReport(userEmail).Result);
             Console.WriteLine();
             Console.WriteLine("Press any key to close...");
             Console.ReadLine();

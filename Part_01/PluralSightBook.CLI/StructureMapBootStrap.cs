@@ -1,7 +1,8 @@
-﻿using PluralSightBook.CLI.WebAPIService;
+﻿using PluralSightBook.CLI.JsonModelBuilder;
+using PluralSightBook.CLI.WebAPIService;
 using PluralSightBook.Core.Interfaces;
 using StructureMap;
-using System.Net.Http;
+using System.Net;
 
 namespace PluralSightBook.CLI
 {
@@ -19,12 +20,13 @@ namespace PluralSightBook.CLI
                 });
 
                 // Configure WebAPI
-                c.For<HttpClient>().Singleton().Use(() => ApiConfig.GetClient());
+                c.For<WebClient>().Singleton().Use(() => ApiConfig.GetClient());
 
                 // Configure Implementations
                 // c.For<ISendEmail>().Use<DebugEmailSender>();
                 // c.For<IUserService>().Use<WebApiUserService>();
                 c.For<IFriendService>().Use<WebApiFriendsService>();
+                c.For<IJsonModelConvertor>().Use<JsonModelConvertor>();
             });
 
             return container;
